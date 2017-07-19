@@ -12,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
+    private int base=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,13 +24,20 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onDdd();
-                throwNullPoint();
+//                onDdd();
+//                AfterReturning("12349825");
+//                base++;
+                AfterReturning(base + "12308543");
+//                Log.e("zoudong", "onClick====" + "view = [" + view + "]"+base);
+//                throwNullPoint();
                 startActivity(new Intent(MainActivity.this, SecondActivity.class));
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
+    }
+    private int AfterReturning(String arg){
+        return 1;
     }
     private void throwNullPoint(){
         String s=null;

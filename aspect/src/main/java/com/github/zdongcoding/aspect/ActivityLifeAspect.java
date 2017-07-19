@@ -7,6 +7,7 @@ import android.widget.Toast;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -64,6 +65,30 @@ public class ActivityLifeAspect {
     @AfterThrowing(pointcut = "execution(* com.github.zdongcoding.aspectjdemo.MainActivity.throwNullPoint(..))",throwing="exception")
     public void  throwNullPoint(Exception exception){
         Log.e("zoudong", "throwNullPoint====" + " exception = [" + exception.toString() + "]");
+    }
+    @Pointcut(value ="execution(* com.github.zdongcoding.aspectjdemo.MainActivity.AfterReturning(..)) && args(a)",argNames = "a")
+   private void  argName(String a){}
+    @AfterReturning(pointcut = "argName(a)",argNames = "a",returning = "name")
+    public void   AfterReturning(JoinPoint joinPoint,String a,int name){
+        Log.e(TAG, "joinPoint.getArgs():" + joinPoint.getArgs()[0]);
+        Log.e("zoudong", "AfterReturning====" + "joinPoint = [" + joinPoint + "],return name = [" + name + "]arg="+a);
+    }
+//    @Pointcut("get(int com.github.zdongcoding.aspectjdemo.MainActivity.base)")
+//    public void fieldget() {}
+//    @Around("fieldget()")
+//    public int fieldget(ProceedingJoinPoint thisJoinPoint) throws Throwable {
+//        Object proceed = thisJoinPoint.proceed();
+//        System.out.println(thisJoinPoint.toLongString());
+//        System.out.println("  " + thisJoinPoint.getSignature().getName());
+//        System.out.println("  " +"--->"+proceed);
+//        return (int) proceed;
+//    }
+    @Pointcut("set(int com.github.zdongcoding.aspectjdemo.MainActivity.base)")
+    public void fieldset() {}
+    @Around("fieldset()")
+    public void  fieldset(ProceedingJoinPoint joinPoint) throws Throwable {
+        Log.e(TAG, "around->" + joinPoint.getTarget().toString() + "#" + joinPoint.getArgs()[0]);
+        joinPoint.proceed(new Integer[]{100});
     }
 
     public static final String invokeonDdd="withincode(* com.github.zdongcoding.aspectjdemo.MainActivity.onDdd(..))";
