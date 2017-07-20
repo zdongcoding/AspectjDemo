@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        base =10000000;
+        Log.e("zoudong", "base="+base);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //                onDdd();
 //                AfterReturning("12349825");
 //                base++;
+
                 AfterReturning(base + "12308543");
 //                Log.e("zoudong", "onClick====" + "view = [" + view + "]"+base);
 //                throwNullPoint();
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     private int AfterReturning(String arg){
+//        aaaa(1000);
         return 1;
     }
     private void throwNullPoint(){
@@ -76,4 +80,10 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+//    public void aaaa(int base) {
+//        Log.e("zoudong", "aaaa1====" + "base = [" + this.base + "]");
+//        this.base++;
+//        Log.e("zoudong", "aaaa2====" + "base = [" + this.base + "]");
+//    }
 }
