@@ -11,8 +11,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+@Runtime("MainActivity")
 public class MainActivity extends AppCompatActivity {
+    @Runtime("base")
     private int base=1;
+
+    @Runtime("onCreate")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                onDdd();
 //                AfterReturning("12349825");
-//                base++;
+                base++;
 
                 AfterReturning(base + "12308543");
 //                Log.e("zoudong", "onClick====" + "view = [" + view + "]"+base);
@@ -39,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    @Runtime("AfterReturning")
     private int AfterReturning(String arg){
 //        aaaa(1000);
         return 1;
     }
     private void throwNullPoint(){
+        @Runtime({"s"})
         String s=null;
         s.equals("null");
     }
